@@ -4,32 +4,62 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Loader;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
 
-    TabLayout tabLayout;
-    ViewPager2 pager2;
+public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<MoviesData> ,MoviesViewAdapter.ItemClicked {
+
+    TabLayout mTabLayout;
+    ViewPager2 mViewpager;
     FragmentAdapter fragmentAdapter;
+
+    static List<Movie> popularMoviesList;
+    static List<Movie> topratedMoviesList ;
+    static List<Movie> upcomingMoviesList ;
+    android.app.LoaderManager moviesLoaderManager;
+
+    final int LOADER_ID = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout = findViewById(R.id.tabView);
-        pager2 = findViewById(R.id.viewPager);
+        mTabLayout = findViewById(R.id.tabView);
+        mViewpager = findViewById(R.id.viewPager);
 
-        FragmentManager fm = getSupportFragmentManager();
-        fragmentAdapter = new FragmentAdapter(fm, getLifecycle());
-        pager2.setAdapter(fragmentAdapter);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        moviesLoaderManager = getLoaderManager();
+        moviesLoaderManager.initLoader(LOADER_ID, null, this);
+    }
+
+    @Override
+    public Loader<MoviesData> onCreateLoader(int i, Bundle bundle) {
+        return new MoviesLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<MoviesData> loader, MoviesData movies) {
+
+        popularMoviesList = movies.getPopularmoviesList();
+        topratedMoviesList = movies.getTopratedmoviesList();
+        upcomingMoviesList = movies.getUpcomingmoviesList();
+
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        fragmentAdapter = new FragmentAdapter(mFragmentManager, getLifecycle());
+        mViewpager.setAdapter(fragmentAdapter);
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                pager2.setCurrentItem(tab.getPosition());
+                mViewpager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -43,12 +73,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        mViewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
+                mTabLayout.selectTab(mTabLayout.getTabAt(position));
             }
         });
 
+    }
+
+    @Override
+    public void onLoaderReset(Loader<MoviesData> loader) {
+
+    }
+
+    @Override
+    public void onItemClicked(int i) {
+        Log.e("Passant" ,"item clicked");
     }
 }

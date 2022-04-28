@@ -17,12 +17,10 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new Latest();
-            case 1:
                 return new Popular();
-            case 2:
+            case 1:
                 return new TopRated();
-            case 3:
+            case 2:
                 return new UpComing();
         }
         return null;
@@ -30,6 +28,6 @@ public class FragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }
