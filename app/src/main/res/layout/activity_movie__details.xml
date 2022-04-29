@@ -33,6 +33,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/poster"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
@@ -62,6 +63,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="3dp"
                     android:clickable="true"
+                    android:contentDescription="@string/favorite"
                     android:focusable="true"
                     app:srcCompat="@android:drawable/btn_star_big_on" />
 
@@ -87,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:text="@string/trailers"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -102,6 +105,8 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:contentDescription="@string/play"
+                app:srcCompat="@drawable/play_button"
                 android:focusable="true" />
 
             <TextView
@@ -111,6 +116,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="4"
+                android:text="@string/trailer2"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -127,6 +133,8 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:contentDescription="@string/play"
+                app:srcCompat="@drawable/play_button"
                 android:focusable="true" />
 
             <TextView
@@ -136,6 +144,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="4"
+                android:text="@string/trailer1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -151,6 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:text="@string/reviews"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
