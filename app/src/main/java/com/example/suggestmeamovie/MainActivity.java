@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     final int LOADER_ID = 0;
 
+    int movieType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         mViewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                movieType = position;
                 mTabLayout.selectTab(mTabLayout.getTabAt(position));
             }
         });
@@ -89,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     @Override
     public void onItemClicked(int i) {
-        Log.e("Passant" ,"item clicked");
+        Intent intent = new Intent(MainActivity.this, Movie_Details.class);
+        intent.putExtra(getString(R.string.index),i);
+        intent.putExtra(getString(R.string.movie_type),movieType);
+        startActivity(intent);
     }
 }

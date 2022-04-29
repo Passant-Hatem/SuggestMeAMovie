@@ -9,6 +9,7 @@ public class Movie {
     private final String voteAverage;
     private final String releaseDate;
 
+
     public Movie(int id, String originalTitle, String moviePosterUrl, String overview, String voteAverage, String releaseDate) {
         this.id = id;
         this.originalTitle = originalTitle;
@@ -17,6 +18,7 @@ public class Movie {
         this.voteAverage = voteAverage;
         this.releaseDate = releaseDate;
     }
+
 
     public String getOriginalTitle() {
         return originalTitle;
