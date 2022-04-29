@@ -4,9 +4,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,9 +25,14 @@ public class Movie_Details extends AppCompatActivity  implements LoaderManager.L
     TextView reviewsTxtView;
     ImageView posterImgV;
 
+    ImageView playTrailerOne;
+    ImageView getPlayTrailertwo;
+
+    final int REVIEW_LOADER_ID = 6;
+
+    LoaderManager loaderManager;
 
     private Movie movie;
-    private Loader<List<Review>> loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,23 +81,30 @@ public class Movie_Details extends AppCompatActivity  implements LoaderManager.L
                 .appendPath(movie.getMoviePosterUrl());
         Picasso.get().load(builder.toString()).fit().into(posterImgV);
 
-
+        loaderManager = getLoaderManager();
+        loaderManager.initLoader(REVIEW_LOADER_ID, null, this);
         reviewsTxtView = findViewById(R.id.reviewsTxtView);
+
+
+        Intent intent = new Intent(Movie_Details.this, Trailer.class);
+        intent.putExtra("movie_id",movie.getId());
+
+       playTrailerOne = findViewById(R.id.playTrailer1Img);
+       playTrailerOne.setOnClickListener(view -> {
+           intent.putExtra("trailer",1);
+           startActivity(intent);
+       });
+
+        getPlayTrailertwo = findViewById(R.id.playTrailer2Img);
+       getPlayTrailertwo.setOnClickListener(view -> {
+           intent.putExtra("trailer",2);
+           startActivity(intent);
+       });
     }
 
     @Override
     public Loader<List<Review>> onCreateLoader(int i, Bundle bundle) {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("api.themoviedb.org")
-                .appendPath("3")
-                .appendPath("movie")
-                .appendPath(movie.getId())
-                .appendPath("reviews")
-                .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
-                .appendQueryParameter("language", "en-US")
-                .appendQueryParameter("page", "2");
-        return new ReviewLoader(this ,builder.toString());
+        return new ReviewLoader(this ,movie.getId());
     }
 
     @Override

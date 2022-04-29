@@ -5,9 +5,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,11 +17,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
+public class TrailerIDLoader  extends AsyncTaskLoader<List<String>> {
 
-    private final String movieId;
+     private final String movieId;
 
-    public ReviewLoader(@NonNull Context context , String movieId) {
+
+    public TrailerIDLoader(Context context ,String movieId) {
         super(context);
         this.movieId = movieId;
     }
@@ -34,22 +32,21 @@ public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
         forceLoad();
     }
 
-
-    @Nullable
     @Override
-    public List<Review> loadInBackground() {
+    public List<String> loadInBackground() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("api.themoviedb.org")
                 .appendPath("3")
                 .appendPath("movie")
                 .appendPath(movieId)
-                .appendPath("reviews")
+                .appendPath("videos")
                 .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
                 .appendQueryParameter("language", "en-US");
+
         OkHttpClient client = new OkHttpClient();
         String Res;
-        ArrayList<Review> ReviewArrayList = new ArrayList<>();
+        ArrayList<String> movieTrailerID = new ArrayList<>();
         Request request = new Request.Builder()
                 .url(builder.toString())
                 .build();
@@ -60,11 +57,8 @@ public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
             try {
                 JSONObject myObject = new JSONObject(Res);
                 JSONArray jsonArray = myObject.getJSONArray("results");
-                if(jsonArray.length() == 0) Log.e("myLoader" ,"size is equal to zero!!");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    ReviewArrayList.add(new Review(jsonArray.getJSONObject(i).getString("author")
-                            ,jsonArray.getJSONObject(i).getString("content")
-                    ));
+                    movieTrailerID.add(jsonArray.getJSONObject(i).getString("key"));
                 }
             } catch (Exception e) {
                 Log.e("myLoader", Objects.requireNonNull(e.getMessage()));
@@ -72,7 +66,7 @@ public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
         } catch (IOException e) {
             Log.e("myLoader", Objects.requireNonNull(e.getMessage()));
         }
-        return ReviewArrayList;
+
+        return movieTrailerID;
     }
 }
-
