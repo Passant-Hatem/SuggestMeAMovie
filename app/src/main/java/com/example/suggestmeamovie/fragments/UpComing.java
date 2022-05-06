@@ -1,4 +1,4 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.fragments;
 
 import android.os.Bundle;
 
@@ -11,24 +11,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.suggestmeamovie.adapters.MoviesViewAdapter;
+import com.example.suggestmeamovie.MainActivity;
+import com.example.suggestmeamovie.R;
+import com.example.suggestmeamovie.view_adapters.MoviesViewAdapter;
 import com.example.suggestmeamovie.data.Movie;
 
 import java.util.ArrayList;
 
-public class Popular extends Fragment {
+public class UpComing extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
     View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_popular, container, false);
+        view = inflater.inflate(R.layout.fragment_up_coming, container, false);
         return view;
     }
 
@@ -36,8 +37,8 @@ public class Popular extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        recyclerView = view.findViewById(R.id.popularMovies_view);
-        adapter = new MoviesViewAdapter(this.getActivity(), (ArrayList<Movie>) MainActivity.popularMoviesList);
+        recyclerView = view.findViewById(R.id.upcomingMovies_View);
+        adapter = new MoviesViewAdapter(this.getActivity(), (ArrayList<Movie>) MainActivity.upcomingMoviesList);
         recyclerView.setAdapter(adapter);
         layoutManager = new GridLayoutManager(this.getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

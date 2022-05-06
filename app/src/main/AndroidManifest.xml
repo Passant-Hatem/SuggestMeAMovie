@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuggestMeAMovie">
         <activity android:name=".Trailer"></activity>
-        <activity android:name=".Movie_Details">
+        <activity android:name=".Movie_Details_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

@@ -8,10 +8,11 @@ import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 
-import com.example.suggestmeamovie.adapters.MoviesViewAdapter;
+import com.example.suggestmeamovie.view_adapters.MoviesViewAdapter;
 import com.example.suggestmeamovie.data.Movie;
 import com.example.suggestmeamovie.data.MoviesData;
 import com.example.suggestmeamovie.data_loaders.MoviesLoader;
+import com.example.suggestmeamovie.fragments.FragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     ViewPager2 mViewpager;
     FragmentAdapter fragmentAdapter;
 
-    static List<Movie> popularMoviesList;
-    static List<Movie> topratedMoviesList ;
-    static List<Movie> upcomingMoviesList ;
+    public static List<Movie> popularMoviesList;
+    public static List<Movie> topratedMoviesList ;
+    public static List<Movie> upcomingMoviesList ;
     android.app.LoaderManager moviesLoaderManager;
 
     final int LOADER_ID = 0;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     @Override
     public void onItemClicked(int i) {
-        Intent intent = new Intent(MainActivity.this, Movie_Details.class);
+        Intent intent = new Intent(MainActivity.this, Movie_Details_Activity.class);
         intent.putExtra(getString(R.string.index),i);
         intent.putExtra(getString(R.string.movie_type),movieType);
         startActivity(intent);

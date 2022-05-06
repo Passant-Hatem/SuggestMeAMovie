@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Movie_Details extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Review>> {
+public class Movie_Details_Activity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Review>> {
 
     TextView titleTxtV;
     TextView releaseDateTxtV;
@@ -88,7 +88,7 @@ public class Movie_Details extends AppCompatActivity  implements LoaderManager.L
         reviewsTxtView = findViewById(R.id.reviewsTxtView);
 
 
-        Intent intent = new Intent(Movie_Details.this, Trailer.class);
+        Intent intent = new Intent(Movie_Details_Activity.this, Trailer.class);
         intent.putExtra("movie_id",movie.getId());
 
        playTrailerOne = findViewById(R.id.playTrailer1Img);

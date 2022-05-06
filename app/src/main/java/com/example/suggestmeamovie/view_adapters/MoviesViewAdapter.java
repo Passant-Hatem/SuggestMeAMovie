@@ -1,4 +1,4 @@
-package com.example.suggestmeamovie.adapters;
+package com.example.suggestmeamovie.view_adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -52,7 +52,7 @@ public class MoviesViewAdapter extends RecyclerView.Adapter<MoviesViewAdapter.Vi
         return list.size();
     }
 
-    interface ItemClicked {
+    public interface ItemClicked {
         void onItemClicked(int i);
     }
 

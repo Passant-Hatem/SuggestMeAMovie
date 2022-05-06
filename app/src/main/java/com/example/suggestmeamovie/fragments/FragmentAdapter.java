@@ -1,10 +1,14 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.suggestmeamovie.fragments.Popular;
+import com.example.suggestmeamovie.fragments.TopRated;
+import com.example.suggestmeamovie.fragments.UpComing;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
