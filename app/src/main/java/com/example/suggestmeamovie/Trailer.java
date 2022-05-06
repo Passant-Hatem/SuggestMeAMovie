@@ -8,6 +8,8 @@ import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.suggestmeamovie.data_loaders.TrailerIDLoader;
+
 import java.util.List;
 
 public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<String>> {

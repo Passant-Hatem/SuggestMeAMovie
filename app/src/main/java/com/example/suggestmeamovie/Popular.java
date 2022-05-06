@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.suggestmeamovie.adapters.MoviesViewAdapter;
 import com.example.suggestmeamovie.data.Movie;
 
 import java.util.ArrayList;

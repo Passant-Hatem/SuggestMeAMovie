@@ -8,13 +8,15 @@ import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 
+import com.example.suggestmeamovie.adapters.MoviesViewAdapter;
 import com.example.suggestmeamovie.data.Movie;
 import com.example.suggestmeamovie.data.MoviesData;
+import com.example.suggestmeamovie.data_loaders.MoviesLoader;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<MoviesData> ,MoviesViewAdapter.ItemClicked {
+public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<MoviesData> , MoviesViewAdapter.ItemClicked {
 
     TabLayout mTabLayout;
     ViewPager2 mViewpager;

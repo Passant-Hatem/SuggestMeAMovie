@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.suggestmeamovie.data.Movie;
 import com.example.suggestmeamovie.data.Review;
+import com.example.suggestmeamovie.data_loaders.ReviewLoader;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

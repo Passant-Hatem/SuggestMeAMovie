@@ -1,4 +1,4 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.suggestmeamovie.R;
 import com.example.suggestmeamovie.data.Movie;
 import com.squareup.picasso.Picasso;
 

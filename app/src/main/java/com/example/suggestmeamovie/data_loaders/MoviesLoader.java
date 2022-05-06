@@ -1,4 +1,4 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.data_loaders;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
