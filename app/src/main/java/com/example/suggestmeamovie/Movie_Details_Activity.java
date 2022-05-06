@@ -2,6 +2,8 @@ package com.example.suggestmeamovie;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.LoaderManager;
 import android.content.Intent;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 import com.example.suggestmeamovie.data.Movie;
 import com.example.suggestmeamovie.data.Review;
 import com.example.suggestmeamovie.data_loaders.ReviewLoader;
+import com.example.suggestmeamovie.view_adapters.Reviews_Adapter;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie_Details_Activity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<List<Review>> {
@@ -26,6 +30,10 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
     TextView overviewTxtV;
     TextView reviewsTxtView;
     ImageView posterImgV;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     ImageView playTrailerOne;
     ImageView getPlayTrailertwo;
@@ -65,10 +73,18 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
         titleTxtV.setText(movie.getOriginalTitle());
 
         releaseDateTxtV = findViewById(R.id.releaseDateTextView);
-        releaseDateTxtV.setText(movie.getReleaseDate());
+        StringBuffer releaseDateString = new StringBuffer();
+        releaseDateString.append("Release Date: ");
+        releaseDateString.append(movie.getReleaseDate());
+        releaseDateTxtV.setText(releaseDateString);
 
         rateTxtV = findViewById(R.id.rateTextView);
-        rateTxtV.setText(movie.getVoteAverage());
+        StringBuffer rateString = new StringBuffer();
+        rateString.append("Rate: ");
+        rateString.append(movie.getVoteAverage());
+        rateString.append('/');
+        rateString.append(10);
+        rateTxtV.setText(rateString);
 
         overviewTxtV = findViewById(R.id.overViewTextView);
         overviewTxtV.setText(movie.getOverview());
@@ -85,7 +101,9 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
 
         loaderManager = getLoaderManager();
         loaderManager.initLoader(REVIEW_LOADER_ID, null, this);
-        reviewsTxtView = findViewById(R.id.reviewsTxtView);
+        reviewsTxtView = findViewById(R.id.noReviewsTxtView);
+
+        recyclerView = findViewById(R.id.reviws_listView);
 
 
         Intent intent = new Intent(Movie_Details_Activity.this, Trailer.class);
@@ -114,11 +132,10 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
         if(reviews.isEmpty())
             reviewsTxtView.setText(R.string.no_reviews);
         else {
-            for (Review review :
-                    reviews) {
-                String r = '\n' + review.getAuthor() + '\n' + review.getContent();
-                reviewsTxtView.setText(r);
-            }
+           adapter = new Reviews_Adapter((ArrayList<Review>) reviews);
+           recyclerView.setAdapter(adapter);
+           layoutManager = new LinearLayoutManager(this ,RecyclerView.VERTICAL ,false);
+           recyclerView.setLayoutManager(layoutManager);
         }
     }
 
