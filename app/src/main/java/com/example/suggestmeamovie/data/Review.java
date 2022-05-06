@@ -1,4 +1,4 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.data;
 
 public class Review {
     String author;

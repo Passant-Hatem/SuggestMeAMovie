@@ -5,6 +5,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.suggestmeamovie.data.Movie;
+import com.example.suggestmeamovie.data.MoviesData;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -96,7 +99,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
 
         OkHttpClient client = new OkHttpClient();
         String Res;
-        ArrayList<com.example.suggestmeamovie.Movie> movieArrayList = new ArrayList<>();
+        ArrayList<Movie> movieArrayList = new ArrayList<>();
         Request request = new Request.Builder()
                 .url(builder.toString())
                 .build();
@@ -108,7 +111,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
                 JSONObject myObject = new JSONObject(Res);
                 JSONArray jsonArray = myObject.getJSONArray("results");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    movieArrayList.add(new com.example.suggestmeamovie.Movie(jsonArray.getJSONObject(i).getInt("id")
+                    movieArrayList.add(new Movie(jsonArray.getJSONObject(i).getInt("id")
                             ,jsonArray.getJSONObject(i).getString("original_title")
                             , jsonArray.getJSONObject(i).getString("poster_path")
                             , jsonArray.getJSONObject(i).getString("overview")
@@ -140,7 +143,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
 
         OkHttpClient client = new OkHttpClient();
         String Res;
-        ArrayList<com.example.suggestmeamovie.Movie> movieArrayList = new ArrayList<>();
+        ArrayList<Movie> movieArrayList = new ArrayList<>();
         Request request = new Request.Builder()
                 .url(builder.toString())
                 .build();
@@ -152,7 +155,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
                 JSONObject myObject = new JSONObject(Res);
                 JSONArray jsonArray = myObject.getJSONArray("results");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    movieArrayList.add(new com.example.suggestmeamovie.Movie(jsonArray.getJSONObject(i).getInt("id")
+                    movieArrayList.add(new Movie(jsonArray.getJSONObject(i).getInt("id")
                             ,jsonArray.getJSONObject(i).getString("original_title")
                             , jsonArray.getJSONObject(i).getString("poster_path")
                             , jsonArray.getJSONObject(i).getString("overview")

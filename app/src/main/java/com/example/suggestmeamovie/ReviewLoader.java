@@ -8,6 +8,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.suggestmeamovie.data.Review;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

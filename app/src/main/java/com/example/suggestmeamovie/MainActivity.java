@@ -6,10 +6,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.content.Loader;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.suggestmeamovie.data.Movie;
+import com.example.suggestmeamovie.data.MoviesData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;

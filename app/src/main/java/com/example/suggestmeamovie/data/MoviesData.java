@@ -1,4 +1,6 @@
-package com.example.suggestmeamovie;
+package com.example.suggestmeamovie.data;
+
+import com.example.suggestmeamovie.data.Movie;
 
 import java.util.ArrayList;
 
