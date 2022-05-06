@@ -2,6 +2,7 @@ package com.example.suggestmeamovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
@@ -15,7 +16,6 @@ import java.util.List;
 public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<String>> {
 
     LoaderManager loaderManager;
-    private final int TRAILER_LOADER = 85;
 
     String movieID;
     int trailerNumber;
@@ -27,7 +27,9 @@ public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCa
         trailerNumber = getIntent().getIntExtra("trailer" ,1);
 
         loaderManager = getLoaderManager();
-        loaderManager.initLoader(TRAILER_LOADER ,null ,this);
+        int TRAILER_LOADER = 85;
+        loaderManager.initLoader(TRAILER_LOADER,null ,this);
+
     }
 
     @Override
@@ -53,6 +55,7 @@ public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCa
         }
         openTrailerIntent.setData(Uri.parse(builder.toString()));
         startActivity(openTrailerIntent);
+        finish();
     }
 
     @Override

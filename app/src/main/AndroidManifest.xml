@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuggestMeAMovie">
-        <activity android:name=".Trailer"></activity>
+        <activity android:name=".Trailer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Movie_Details_Activity" />
+        </activity>
         <activity android:name=".Movie_Details_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
