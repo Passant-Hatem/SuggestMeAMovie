@@ -7,9 +7,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.suggestmeamovie.MainActivity;
-import com.example.suggestmeamovie.fragments.Popular;
-import com.example.suggestmeamovie.fragments.TopRated;
-import com.example.suggestmeamovie.fragments.UpComing;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
@@ -20,7 +17,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if(!MainActivity.isConnected){
+        if(!MainActivity.isConnected()){
             return new No_Connection();
         }
         else {

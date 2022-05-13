@@ -35,18 +35,14 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     int movieType;
 
-    public static boolean isConnected = false;
-
+     private static ConnectivityManager connectivityManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //check whether we connected or not
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        isConnected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
-
+       connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
         mTabLayout = findViewById(R.id.tabView);
         mViewpager = findViewById(R.id.viewPager);
@@ -54,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
         moviesLoaderManager = getLoaderManager();
         moviesLoaderManager.initLoader(LOADER_ID, null, this);
+    }
+
+    public  static boolean isConnected(){
+        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+
     }
 
     @Override
