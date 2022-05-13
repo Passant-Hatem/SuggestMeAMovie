@@ -20,11 +20,12 @@ import okhttp3.Response;
 public class TrailerIDLoader  extends AsyncTaskLoader<List<String>> {
 
      private final String movieId;
+     private final String apiKey;
 
-
-    public TrailerIDLoader(Context context ,String movieId) {
+    public TrailerIDLoader(Context context ,String movieId ,String apiKey) {
         super(context);
         this.movieId = movieId;
+        this.apiKey = apiKey;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class TrailerIDLoader  extends AsyncTaskLoader<List<String>> {
                 .appendPath("movie")
                 .appendPath(movieId)
                 .appendPath("videos")
-                .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
+                .appendQueryParameter("api_key", apiKey)
                 .appendQueryParameter("language", "en-US");
 
         OkHttpClient client = new OkHttpClient();

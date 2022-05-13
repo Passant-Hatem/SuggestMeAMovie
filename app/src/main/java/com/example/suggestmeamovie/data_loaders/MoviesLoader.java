@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.suggestmeamovie.R;
 import com.example.suggestmeamovie.data.Movie;
 import com.example.suggestmeamovie.data.MoviesData;
 
@@ -20,9 +21,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
-
-    public MoviesLoader(Context context) {
+    String apiKey;
+    public MoviesLoader(Context context ,String apiKey) {
         super(context);
+        this.apiKey = apiKey;
     }
 
     @Override
@@ -44,12 +46,13 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
    private ArrayList<Movie> loadPopularMovies(){
 
        Uri.Builder builder = new Uri.Builder();
+
        builder.scheme("https")
                .authority("api.themoviedb.org")
                .appendPath("3")
                .appendPath("movie")
                .appendPath("popular")
-               .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
+               .appendQueryParameter("api_key",apiKey)
                .appendQueryParameter("language", "en-US")
                .appendQueryParameter("page", "2");
 
@@ -93,7 +96,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
                 .appendPath("3")
                 .appendPath("movie")
                 .appendPath("top_rated")
-                .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
+                .appendQueryParameter("api_key", apiKey)
                 .appendQueryParameter("language", "en-US")
                 .appendQueryParameter("page", "2");
 
@@ -137,7 +140,7 @@ public class MoviesLoader extends AsyncTaskLoader<MoviesData> {
                 .appendPath("3")
                 .appendPath("movie")
                 .appendPath("upcoming")
-                .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
+                .appendQueryParameter("api_key", apiKey)
                 .appendQueryParameter("language", "en-US")
                 .appendQueryParameter("page", "2");
 

@@ -43,11 +43,14 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
     LoaderManager loaderManager;
 
     private Movie movie;
+    private String apiKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie__details);
+
+        apiKey = getString(R.string.api_key);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -124,7 +127,7 @@ public class Movie_Details_Activity extends AppCompatActivity  implements Loader
 
     @Override
     public Loader<List<Review>> onCreateLoader(int i, Bundle bundle) {
-        return new ReviewLoader(this ,movie.getId());
+        return new ReviewLoader(this ,movie.getId() ,apiKey);
     }
 
     @Override

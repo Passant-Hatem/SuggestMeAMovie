@@ -25,10 +25,12 @@ import okhttp3.Response;
 public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
 
     private final String movieId;
+    private final String apiKey;
 
-    public ReviewLoader(@NonNull Context context , String movieId) {
+    public ReviewLoader(@NonNull Context context , String movieId ,String apiKey) {
         super(context);
         this.movieId = movieId;
+        this.apiKey = apiKey;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class ReviewLoader extends AsyncTaskLoader<List<Review>> {
                 .appendPath("movie")
                 .appendPath(movieId)
                 .appendPath("reviews")
-                .appendQueryParameter("api_key", "2ac9981a561616a4a7bce0c72f84aa78")
+                .appendQueryParameter("api_key", apiKey)
                 .appendQueryParameter("language", "en-US");
         OkHttpClient client = new OkHttpClient();
         String Res;

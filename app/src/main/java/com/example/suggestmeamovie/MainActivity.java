@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     android.app.LoaderManager moviesLoaderManager;
 
     final int LOADER_ID = 0;
-
+    private String apiKey;
     int movieType;
 
      private static ConnectivityManager connectivityManager;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         mTabLayout = findViewById(R.id.tabView);
         mViewpager = findViewById(R.id.viewPager);
 
-
+        apiKey = getString(R.string.api_key);
         moviesLoaderManager = getLoaderManager();
         moviesLoaderManager.initLoader(LOADER_ID, null, this);
     }
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     @Override
     public Loader<MoviesData> onCreateLoader(int i, Bundle bundle) {
-        return new MoviesLoader(this);
+        return new MoviesLoader(this ,apiKey);
     }
 
     @Override

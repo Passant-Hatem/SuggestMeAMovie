@@ -19,9 +19,12 @@ public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCa
 
     String movieID;
     int trailerNumber;
+    private String apiKey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        apiKey = getString(R.string.api_key);
 
         movieID = getIntent().getStringExtra("movie_id");
         trailerNumber = getIntent().getIntExtra("trailer" ,1);
@@ -34,7 +37,7 @@ public class Trailer extends AppCompatActivity implements LoaderManager.LoaderCa
 
     @Override
     public Loader<List<String>> onCreateLoader(int i, Bundle bundle) {
-        return new TrailerIDLoader(this ,movieID);
+        return new TrailerIDLoader(this ,movieID ,apiKey);
     }
 
     @Override
