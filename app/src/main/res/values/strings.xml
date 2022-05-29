@@ -20,5 +20,6 @@
     <string name="no_reviews">There is no reviews yet!</string>
     <string name="temp_txt">Blah Blah Blah</string>
     <string name="refresh">Refresh</string>
-    <string name="api_key">2ac9981a561616a4a7bce0c72f84aa78</string>>
+    //TODO change api key to yours
+    <string name="api_key">*******************************</string>>
 </resources>
